@@ -213,6 +213,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.repo = exports.context = void 0;
 const github = __importStar(__webpack_require__(5438));
 function context() {
+    if (github.context.eventName == 'pull_request_target') {
+        github.context.ref = `refs/pull/${github.context.payload.number}/merge`;
+    }
     return github.context;
 }
 exports.context = context;
